@@ -155,7 +155,7 @@ while true do wait()
 	
 	
 	local function getWhitelist(plr)
-			if plr.Name == whitelisted then
+			if plr.Name ~= whitelisted then
 				return false
 			else
 				return true
