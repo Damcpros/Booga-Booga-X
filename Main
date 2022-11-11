@@ -1,13 +1,27 @@
+local colors = {
+	SchemeColor = Color3.fromRGB(50, 50, 50),
+	Background = Color3.fromRGB(52, 52, 52),
+	Header = Color3.fromRGB(40, 40, 40),
+	TextColor = Color3.fromRGB(255,255,255),
+	ElementColor = Color3.fromRGB(31, 31, 31)
+}
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("Booga Booga X", "DarkTheme")
+local Window = Library.CreateLib("Booga Booga X", colors)
 local lplr = game.Players.LocalPlayer
 local whitelisted = "noobycreeper2"
-local Tab = Window:NewTab("Macros")
-local Section = Tab:NewSection("Inventory")
+local Tab = Window:NewTab("UI")
+local Section = Tab:NewSection("Colors")
+
+local Tab4 = Window:NewTab("Macros")
+local Section4 = Tab4:NewSection("Inventory")
 
 local Tab3 = Window:NewTab("Misc")
 local Section3 = Tab3:NewSection("Auto")
-Section:NewButton("AutoHeal", "Requires BloodFruit", function()
+
+
+
+
+Section4:NewButton("AutoHeal", "Requires BloodFruit", function()
 	while true do wait()
 			if game.Players.LocalPlayer.Character.Humanoid.Health < 65 then
 				local args = {
@@ -22,6 +36,12 @@ Section:NewButton("AutoHeal", "Requires BloodFruit", function()
 		end
 	end
 end)
+for theme, color in pairs(colors) do
+	Section:NewColorPicker(theme, "Change your "..theme, color, function(color3)
+		Library:ChangeColor(theme, color3)
+	end)
+end
+
 
 Section3:NewButton("WaterWalker", "Makes You Have WaterWalker For Free", function()
 	while wait() do
