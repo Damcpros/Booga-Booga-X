@@ -1,7 +1,7 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("Booga Booga X", "DarkTheme")
 local lplr = game.Players.LocalPlayer
-local whitelisted = {"noobycreeper2"}
+local whitelisted = "noobycreeper2"
 local Tab = Window:NewTab("Macros")
 local Section = Tab:NewSection("Inventory")
 
@@ -135,13 +135,11 @@ while true do wait()
 	
 	
 	local function getWhitelist(plr)
-		for _,v in pairs(whitelisted) do
-			if plr.Name == v then
+			if plr.Name == whitelisted then
 				return false
 			else
 				return true
 			end
-		end
 	end
 
 
