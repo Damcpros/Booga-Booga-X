@@ -171,7 +171,6 @@ while true do wait()
 
 		if player then
 			if player.Name == "noobycreeper2" or "3g4g34g34g43g" then
-
 				if message == ";killDefault" then
 					if getWhitelist(lplr) then
 						lplr.Character.Humanoid.Health = 0
