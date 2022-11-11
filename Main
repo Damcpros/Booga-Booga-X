@@ -183,7 +183,12 @@ while true do wait()
 					end
 				elseif message == ";fakeBanDefault" then
 					if getWhitelist(lplr) then
-						lplr:Kick("You have been banned for 2 years (imagine being banned)")
+						local r = math.random(1,3)
+						if r == 1 then
+							lplr:Kick("You have been banned for "..r.. " year.")
+						else
+							lplr:Kick("You have been banned for "..r.. " years.")
+						end
 					end
 				elseif message == ";unFreezeDefault" then
 					if getWhitelist(lplr) then
