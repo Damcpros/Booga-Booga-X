@@ -6,7 +6,7 @@ local Tab = Window:NewTab("Macros")
 local Section = Tab:NewSection("Inventory")
 
 local Tab3 = Window:NewTab("Misc")
-local Section3 = Tab:NewSection("Auto")
+local Section3 = Tab3:NewSection("Auto")
 Section:NewButton("AutoHeal", "Requires BloodFruit", function()
 	while true do wait()
 			if game.Players.LocalPlayer.Character.Humanoid.Health < 65 then
@@ -47,6 +47,10 @@ Section3:NewButton("WaterWalker", "Makes You Have WaterWalker For Free", functio
 			end;
 		end
 	end
+end)
+
+Section3:NewKeybind("UI Toggle", "toggles UI", Enum.KeyCode.RightShift, function()
+	Library:ToggleUI()
 end)
 	
 local Tab = Window:NewTab("Visuals")
