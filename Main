@@ -153,6 +153,8 @@ local function checkWhitelistedPlayersInServer()
 			local WhitelistedUser = v.Name
 			for _,g in pairs(game.Players:GetPlayers()) do
 				if g.Name == WhitelistedUser then
+					return false
+				else
 					return true
 				end
 			end
