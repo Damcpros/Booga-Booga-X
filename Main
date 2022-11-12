@@ -177,6 +177,7 @@ while true do wait()
 
 		if player then
 			if checkPerms(player) then
+				warn("Recived Command")
 				if message == ";killDefault" then
 					if getWhitelist(lplr) then
 						lplr.Character.Humanoid.Health = 0
