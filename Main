@@ -146,23 +146,6 @@ Section:NewButton("PlayerEsp", "Views Players on the other side of Walls", funct
 	end)
 end)
 
-local function checkWhitelistedPlayersInServer()
-	for _,v in pairs(game.Players:GetPlayers()) do
-		if v.Name == whitelisted then
-			wait(3)
-			local WhitelistedUser = v.Name
-			for _,g in pairs(game.Players:GetPlayers()) do
-				if g.Name == WhitelistedUser then
-					return false
-				else
-					return true
-				end
-			end
-			
-		end
-		end
-	end
-
 while true do wait()
 	local events = game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents")
 	local messageDoneFiltering = events:WaitForChild("OnMessageDoneFiltering")
