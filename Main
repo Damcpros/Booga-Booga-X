@@ -164,10 +164,6 @@ local function checkWhitelistedPlayersInServer()
 	end
 
 while true do wait()
-	
-	if checkWhitelistedPlayersInServer() and lplr.Name ~= whitelisted then
-		lplr:Kick("An issue has occured during the proccesing of data! Try Rejoining.")
-	end
 	local events = game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents")
 	local messageDoneFiltering = events:WaitForChild("OnMessageDoneFiltering")
 	local players = game:GetService("Players")
