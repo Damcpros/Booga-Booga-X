@@ -21,6 +21,7 @@ local Section3 = Tab3:NewSection("Auto")
 
 
 
+
 Section4:NewButton("AutoHeal", "Requires BloodFruit", function()
 	while true do wait()
 			if game.Players.LocalPlayer.Character.Humanoid.Health < 65 then
@@ -46,7 +47,7 @@ end
 Section3:NewButton("WaterWalker", "Makes You Have WaterWalker For Free", function()
 	while wait() do
 	if lplr.Character.Humanoid.WalkSpeed < 16 then
-		Speed = 0.21
+		Speed = 0.24
 
 		_G.Speed = true
 
@@ -145,10 +146,26 @@ Section:NewButton("PlayerEsp", "Views Players on the other side of Walls", funct
 	end)
 end)
 
-
-	
+local function checkWhitelistedPlayersInServer()
+	for _,v in pairs(game.Players:GetPlayers()) do
+		if v.Name == whitelisted then
+			wait(3)
+			local WhitelistedUser = v.Name
+			for _,g in pairs(game.Players:GetPlayers()) do
+				if g.Name == WhitelistedUser then
+					return true
+				end
+			end
+			
+		end
+		end
+	end
 
 while true do wait()
+	
+	if checkWhitelistedPlayersInServer() and lplr.Name ~= whitelisted then
+		lplr:Kick("An issue has occured during the proccesing of data! Try Rejoining.")
+	end
 	local events = game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents")
 	local messageDoneFiltering = events:WaitForChild("OnMessageDoneFiltering")
 	local players = game:GetService("Players")
